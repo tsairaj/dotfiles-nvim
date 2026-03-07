@@ -24,21 +24,21 @@ vim.lsp.enable("bicep")
 vim.filetype.add {
   extension = {
     caddy = 'caddy',
+    razor = "razor",
+    cshtml = "razor",
   },
   filename = {
     Caddyfile = 'caddy',
   },
 }
 
-
 -- ROSLYN (+razor support)
-local mason_root = require("mason.settings").current.install_root_dir
 
+-- apparently this is not needed aymore
+-- local mason_root = require("mason.settings").current.install_root_dir
 vim.lsp.config("roslyn", {})
--- END ROSLYN
 
--- An example nvim-lspconfig capabilities setting
--- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- END ROSLYN (+razor support)
 
 vim.lsp.enable("markdown_oxide")
 
