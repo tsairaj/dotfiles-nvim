@@ -1,5 +1,6 @@
 local M = {}
 
+-- Tree-sitter query used to capture important Razor constructs
 local CAPTURE_QUERY = [[
   (razor_inherits_directive name: (identifier) @inherits)
   (razor_page_directive) @page
@@ -10,10 +11,12 @@ local CAPTURE_QUERY = [[
 
 local PREVIEW_CONTEXT = 8
 
+-- Show an error notification inside Neovim
 local function notify_error(msg)
   vim.notify(msg, vim.log.levels.ERROR)
 end
 
+-- Return the file path of the buffer or nil if the buffer is unnamed
 local function get_current_file(bufnr)
   local file = vim.api.nvim_buf_get_name(bufnr)
   if not file or file == "" then
@@ -22,23 +25,28 @@ local function get_current_file(bufnr)
   return file
 end
 
+-- Read a single line from a buffer by row index
 local function get_line(bufnr, row)
   return (vim.api.nvim_buf_get_lines(bufnr, row, row + 1, false)[1] or "")
 end
 
+-- Remove leading whitespace from a string
 local function trim_left(s)
   return s:gsub("^%s+", "")
 end
 
+-- Extract line and column numbers from an outline entry string
 local function parse_position(entry)
   local line, col = entry:match("^(%d+):(%d+)")
   return tonumber(line), tonumber(col)
 end
 
+-- Determine if a tag name represents a Razor component (starts with uppercase)
 local function is_component_tag(tag)
   return tag and tag:match("^[A-Z]") ~= nil
 end
 
+-- Extract a component tag from a line while ignoring closing or lowercase HTML tags
 local function extract_component_tag(line)
   local trimmed = trim_left(line)
 
@@ -54,6 +62,7 @@ local function extract_component_tag(line)
   return "<" .. tag .. ">"
 end
 
+-- Convert a Tree-sitter capture into the human-readable outline text
 local function format_capture_text(kind, node, bufnr, row)
   if kind == "tag" then
     return extract_component_tag(get_line(bufnr, row))
@@ -67,10 +76,12 @@ local function format_capture_text(kind, node, bufnr, row)
   return trim_left(get_line(bufnr, row))
 end
 
+-- Format a final entry string that fzf will display
 local function make_entry(kind, row, col, text)
   return string.format("%d:%d [%s] %s", row + 1, col + 1, kind, text)
 end
 
+-- Sort outline entries by line and column position
 local function sort_entries(items)
   table.sort(items, function(a, b)
     local line_a, col_a = parse_position(a)
@@ -84,6 +95,7 @@ local function sort_entries(items)
   end)
 end
 
+-- Collect outline items from the Razor buffer using Tree-sitter captures
 local function collect_outline_items(bufnr)
   local parser = vim.treesitter.get_parser(bufnr, "razor")
   local root = parser:parse()[1]:root()
@@ -111,10 +123,12 @@ local function collect_outline_items(bufnr)
   return items
 end
 
+-- Build the shell command used by fzf to preview surrounding lines with bat
 local function build_preview_cmd(file_path)
-  local script = [[
+
+  local script = string.format([[
     line="${1%%:*}"
-    ctx=8
+    ctx=%d
     start=$(( line > ctx ? line - ctx : 1 ))
     stop=$(( line + ctx ))
 
@@ -125,7 +139,7 @@ local function build_preview_cmd(file_path)
       --highlight-line "$line" \
       --line-range "${start}:${stop}" \
       "$2"
-  ]]
+  ]], PREVIEW_CONTEXT)
 
   return table.concat({
     "bash -c",
@@ -134,6 +148,7 @@ local function build_preview_cmd(file_path)
   }, " ")
 end
 
+-- Move the cursor to the location represented by the selected outline entry
 local function jump_to_entry(bufnr, entry)
   local line, col = parse_position(entry)
   if not line or not col then
@@ -152,6 +167,7 @@ local function jump_to_entry(bufnr, entry)
   vim.api.nvim_win_set_cursor(target_win, { line, col - 1 })
 end
 
+-- Main entry point that builds the Razor outline and launches fzf-lua picker
 function M.pick()
   local fzf = require("fzf-lua")
   local bufnr = vim.api.nvim_get_current_buf()
