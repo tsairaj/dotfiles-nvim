@@ -9,7 +9,7 @@ map("n", "gR", fzf.lsp_references, "FZF References")
 
 map("n", "<leader>fs", function()
   if vim.bo.filetype == "razor" then
-    require("custom-plugins.razor_outline").pick()
+    require("fzf-lua-pickers-razor-outline").pick()
   else
     fzf.lsp_document_symbols()
   end
