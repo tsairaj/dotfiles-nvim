@@ -1,12 +1,20 @@
 local fzf = require("fzf-lua")
 
--- map("n", "gm", fzf.marks, "FZF Marks")
+map("n", "gm", fzf.marks, "FZF Marks")
 map("n", "<leader>da", fzf.diagnostics_workspace, "FZF Diagnostics")
 map("n", "<leader>ds", function() fzf.diagnostics_workspace({ severity_only = 1 }) end, "FZF Diagnostics (errors)")
 
 map("n", "gr", fzf.lsp_references, "FZF References")
 map("n", "gR", fzf.lsp_references, "FZF References")
-map("n", "<leader>fs", fzf.lsp_document_symbols, "FZF Document symbols")
+
+map("n", "<leader>fs", function()
+  if vim.bo.filetype == "razor" then
+    require("custom-plugins.razor_outline").pick()
+  else
+    fzf.lsp_document_symbols()
+  end
+end, "Symbols / Razor Outline")
+
 map("n", "<leader>i", fzf.lsp_implementations, "FZF Implementations")
 
 map("n", "T", fzf.buffers, "FZF Buffers")
@@ -21,15 +29,3 @@ map("n", "<leader>qo", fzf.quickfix, "FZF Quickfix")
 map("n", "<leader>qO", fzf.lgrep_quickfix, "FZF Grep → quickfix")
 map("n", "<leader>ca", fzf.lsp_code_actions, "FZF Code actions")
 map("n", "<leader>?", fzf.builtin, "FZF Builtins")
-
-
--- require("custom-mappings.mappings-lsp")
-local razor_outline = require("custom-plugins.razor_outline")
-
-map("n", "gm", function()
-  if vim.bo.filetype == "razor" then
-    razor_outline.pick()
-  else
-    fzf.treesitter()
-  end
-end, "Symbols / Razor Outline")

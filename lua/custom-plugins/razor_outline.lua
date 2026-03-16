@@ -50,6 +50,7 @@ function M.pick()
     end
 
     local entry = string.format("%d:%d [%s] %s", row + 1, col + 1, kind, text)
+
     if not seen[entry] then
       seen[entry] = true
       table.insert(items, entry)
@@ -68,15 +69,24 @@ function M.pick()
     return la < lb
   end)
 
+  -- use bat for preview
   local preview_cmd = table.concat({
     "bash -c",
     vim.fn.shellescape(
       [[
-line="${1%%:*}"
-start=$(( line > 20 ? line - 20 : 1 ))
-stop=$(( line + 40 ))
-bat --style=numbers --color=always --highlight-line "$line" --line-range "${start}:${stop}" "$2"
-      ]]
+        line="${1%%:*}"
+        ctx=8
+        start=$(( line > ctx ? line - ctx : 1 ))
+        stop=$(( line + ctx ))
+
+        BAT_PAGER="" bat \
+          --paging=never \
+          --style=numbers \
+          --color=always \
+          --highlight-line "$line" \
+          --line-range "${start}:${stop}" \
+          "$2"
+    ]]
     ),
     "-- {} " .. vim.fn.shellescape(src_file),
   }, " ")
@@ -84,16 +94,16 @@ bat --style=numbers --color=always --highlight-line "$line" --line-range "${star
   fzf.fzf_exec(items, {
     prompt = "RazorOutline> ",
     fzf_opts = {
-      ["--preview-window"] = "up:60%:wrap",
+      ["--preview-window"] = "up:60%",
       ["--preview"] = preview_cmd,
     },
     actions = {
       ["default"] = function(selected)
         local l, c = selected[1]:match("^(%d+):(%d+)")
-        vim.api.nvim_win_set_cursor(src_bufnr == vim.api.nvim_get_current_buf() and 0 or vim.fn.bufwinid(src_bufnr), {
-          tonumber(l),
-          tonumber(c) - 1,
-        })
+        vim.api.nvim_win_set_cursor(
+          src_bufnr == vim.api.nvim_get_current_buf() and 0 or vim.fn.bufwinid(src_bufnr),
+          { tonumber(l), tonumber(c) - 1 }
+        )
       end,
     },
   })
