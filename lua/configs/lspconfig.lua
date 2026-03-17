@@ -36,7 +36,10 @@ vim.filetype.add {
 
 -- apparently this is not needed aymore
 -- local mason_root = require("mason.settings").current.install_root_dir
-vim.lsp.config("roslyn", {})
+vim.lsp.config("roslyn", {
+  -- currently roslyn crashes when attached to razor files. navigating from code behind files works though
+  filetypes = { "cs", "cshtml" },
+})
 
 -- END ROSLYN (+razor support)
 
