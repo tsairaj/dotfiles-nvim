@@ -38,7 +38,12 @@ vim.filetype.add {
 -- local mason_root = require("mason.settings").current.install_root_dir
 vim.lsp.config("roslyn", {
   -- currently roslyn crashes when attached to razor files. navigating from code behind files works though
-  filetypes = { "cs", "cshtml" },
+  settings = {
+    ["csharp|background_analysis"] = {
+      dotnet_analyzer_diagnostics_scope = "none", -- drastic improvement, timouts seem to go away
+      dotnet_compiler_diagnostics_scope = "openFiles",
+    },
+  },
 })
 
 -- END ROSLYN (+razor support)
