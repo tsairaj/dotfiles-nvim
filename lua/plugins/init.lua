@@ -15,7 +15,9 @@ return {
     "seblyng/roslyn.nvim",
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
-    ft = { "cs", "razor" }
+    -- currently roslyn crashes when attached to razor files. navigating from code behind files works though
+    -- ft = { "cs", "razor" }
+    ft = { "cs" }
   },
   {
     "ibhagwan/fzf-lua",
