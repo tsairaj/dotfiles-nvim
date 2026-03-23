@@ -40,7 +40,7 @@ vim.lsp.config("roslyn", {
   -- currently roslyn crashes when attached to razor files. navigating from code behind files works though
   settings = {
     ["csharp|background_analysis"] = {
-      dotnet_analyzer_diagnostics_scope = "none", -- drastic improvement, timouts seem to go away
+      dotnet_analyzer_diagnostics_scope = "openFiles", -- drastic improvement, timouts seem to go away
       dotnet_compiler_diagnostics_scope = "openFiles",
     },
   },
