@@ -7,7 +7,7 @@ local M = {}
 
 M.base46 = {
 
-  theme = "eldritch",
+  theme = "ayu_dark",
 
   hl_override = {
     Type = { bold = true, italic = false },
