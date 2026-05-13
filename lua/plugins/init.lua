@@ -95,9 +95,14 @@ return {
         "bicep",
         "razor",
         "yaml",
-        "caddy"
+        "caddy",
+        "bash"
       },
     },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+      vim.treesitter.language.register("bash", "conf")
+    end,
   },
   {
     "numToStr/Comment.nvim",
