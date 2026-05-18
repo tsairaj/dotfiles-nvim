@@ -75,7 +75,8 @@ return {
         "markdown-oxide",
 
         -- for some reason those have to be installed explicitely with MasonInstall
-        "roslyn",
+        -- quick fix for breaking change from 18-may-26
+        "roslyn@5.8.0-1.26266.2",  -- don't forget to do :MasonUninstall roslyn, then :MasonInstall roslyn@5.8.0-1.26266.2
         "netcoredbg"
       },
     },
