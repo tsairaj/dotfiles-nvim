@@ -93,8 +93,12 @@ return {
       },
     },
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      -- require("nvim-treesitter.configs").setup(opts)
+    
+      -- I don't know why they make me do this recently
       vim.treesitter.language.register("bash", "conf")
+      vim.treesitter.language.register("bash", "kitty")
+      vim.treesitter.language.register("bash", "tmux")
     end,
   },
   {
