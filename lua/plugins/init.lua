@@ -12,14 +12,6 @@ return {
     end,
   },
   {
-    "seblyng/roslyn.nvim",
-    -- commit = "82d0c9724c3f8eab7342a3a136782b4788070bd0",
-    lazy = false,
-    ---@module 'roslyn.config'
-    ---@type RoslynNvimConfig
-    ft = { "cs", "razor" }
-  },
-  {
     "ibhagwan/fzf-lua",
     -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -76,7 +68,7 @@ return {
 
         -- for some reason those have to be installed explicitely with MasonInstall
         -- quick fix for breaking change from 18-may-26
-        "roslyn@5.8.0-1.26266.2",  -- don't forget to do :MasonUninstall roslyn, then :MasonInstall roslyn@5.8.0-1.26266.2
+        -- "roslyn@5.8.0-1.26266.2",  -- don't forget to do :MasonUninstall roslyn, then :MasonInstall roslyn@5.8.0-1.26266.2
         "netcoredbg"
       },
     },
