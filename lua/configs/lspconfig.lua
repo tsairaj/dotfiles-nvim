@@ -46,7 +46,7 @@ vim.lsp.config("roslyn_ls", {
   },
 })
 
-vim.lsp.enable("markdown_oxide")
+vim.lsp.enable("marksman")
 
 -- IMPORTANT: vim diagnostic configuration AFTER LSPs are loaded
 vim.diagnostic.config(

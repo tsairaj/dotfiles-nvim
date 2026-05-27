@@ -76,6 +76,8 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main", -- since we are using the latest nvim
+    build = ":TSUpdate",
     opts = {
       ensure_installed = {
         "hyprlang",
@@ -94,7 +96,7 @@ return {
     },
     config = function(_, opts)
       -- require("nvim-treesitter.configs").setup(opts)
-    
+
       -- I don't know why they make me do this recently
       vim.treesitter.language.register("bash", "conf")
       vim.treesitter.language.register("bash", "kitty")
