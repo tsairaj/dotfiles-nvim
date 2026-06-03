@@ -101,6 +101,7 @@ return {
       vim.treesitter.language.register("bash", "conf")
       vim.treesitter.language.register("bash", "kitty")
       vim.treesitter.language.register("bash", "tmux")
+      vim.treesitter.language.register("bash", "sh")
     end,
   },
   {
