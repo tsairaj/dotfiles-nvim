@@ -45,11 +45,14 @@ require("custom-config.oil-config")
 require("custom-config.folding")
 require("custom-config.luasnip")
 require("custom-config.centerpad")
+
+
+require("custom-config.nvim-dap")
 require("custom-config.neotest")
+require("custom-config.nvim-dap-ui")
+
 -- require("custom-config.tiny-inline-diagnostic") -- loaded via lazy
 require("custom-config.fzf-lua")
 require("custom-config.comment")
-require("custom-config.nvim-dap")
-require("custom-config.nvim-dap-ui")
 
 require("git-conflict")

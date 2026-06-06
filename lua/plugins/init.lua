@@ -127,6 +127,9 @@ return {
     -- end,
     event = "VeryLazy",
   },
+  {
+    "nsidorenco/neotest-vstest"
+  },
   { "nvim-neotest/nvim-nio" },
   {
     -- UI for debugging
