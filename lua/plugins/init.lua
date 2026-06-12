@@ -162,7 +162,7 @@ return {
     "nvim-neotest/neotest",
     requires = {
       {
-        "Issafalcon/neotest-dotnet",
+        "citizenharris/neotest-dotnet",
       }
     },
     dependencies = {
@@ -173,7 +173,7 @@ return {
     }
   },
   {
-    "Issafalcon/neotest-dotnet",
+    "citizenharris/neotest-dotnet",
     lazy = false,
     dependencies = {
       "nvim-neotest/neotest"
