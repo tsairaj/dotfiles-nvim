@@ -20,6 +20,7 @@ dap.configurations.cs = {
       return require("dap-dll-autopicker").build_dll_path()
     end
   },
+  -- commented out because I hardly use it
   -- {
   --   type = "coreclr",
   --   name = "ATTACH to running app in dedicated terminal",
@@ -31,6 +32,7 @@ dap.configurations.cs = {
 }
 
 map("n", "<F5>", dap.continue, "DAP: Continue/Start")
+map("n", "<F6>", function() neotest.run.run({ strategy = "dap" }) end, "Debug nearest test")
 map("n", "<F9>", dap.toggle_breakpoint, "DAP: Toggle breakpoint")
 map("n", "<F10>", dap.step_over, "DAP: Step over")
 map("n", "<F11>", dap.step_into, "DAP: Step into")
