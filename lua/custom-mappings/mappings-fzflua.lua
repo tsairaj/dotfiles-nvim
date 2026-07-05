@@ -24,8 +24,31 @@ map("n", "<leader>ff", fzf.files, "FZF Files")
 map("n", "<leader>fz", fzf.grep_curbuf, "FZF grep current buffer")
 map("n", "<leader>fw", fzf.live_grep, "FZF Live grep")
 map("n", "<leader>gt", fzf.git_status, "FZF Git status")
+
 map("n", "<leader>fo", fzf.oldfiles, "FZF Old files")
 map("n", "<leader>qo", fzf.quickfix, "FZF Quickfix")
 map("n", "<leader>qO", fzf.lgrep_quickfix, "FZF Grep → quickfix")
 map("n", "<leader>ca", fzf.lsp_code_actions, "FZF Code actions")
 map("n", "<leader>?", fzf.builtin, "FZF Builtins")
+
+-- Get Hunks of the currently opened buffer
+map("n", "<leader>gh", function()
+  local file = vim.api.nvim_buf_get_name(0)
+
+  if file == "" then
+    vim.notify("Current buffer has no file", vim.log.levels.WARN)
+    return
+  end
+
+  require("fzf-lua").git_hunks({
+    cmd = "git --no-pager diff --color=always HEAD -- " .. vim.fn.shellescape(file),
+    ref = "HEAD",
+    file_icons = true,
+    color_icons = true,
+    fzf_opts = {
+      ["--multi"] = true,
+      ["--delimiter"] = ":",
+      ["--nth"] = "3..",
+    },
+  })
+end, { desc = "Git hunks current buffer" })
