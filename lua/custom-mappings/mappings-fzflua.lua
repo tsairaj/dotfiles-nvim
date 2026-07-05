@@ -33,15 +33,9 @@ map("n", "<leader>?", fzf.builtin, "FZF Builtins")
 
 -- Get Hunks of the currently opened buffer
 map("n", "<leader>gh", function()
-  local file = vim.api.nvim_buf_get_name(0)
-
-  if file == "" then
-    vim.notify("Current buffer has no file", vim.log.levels.WARN)
-    return
-  end
-
   require("fzf-lua").git_hunks({
-    cmd = "git --no-pager diff --color=always HEAD -- " .. vim.fn.shellescape(file),
+    cmd = "git --no-pager diff --color=always HEAD -- "
+        .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)),
     ref = "HEAD",
     file_icons = true,
     color_icons = true,
