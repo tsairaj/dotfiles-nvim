@@ -49,7 +49,7 @@ return {
     opts = {
       ensure_installed = {
         "lua-language-server",
-        "xmlformatter",
+        -- "xmlformatter",
         "stylua",
         "bicep-lsp",
         "html-lsp",
@@ -76,6 +76,8 @@ return {
     build = ":TSUpdate",
     opts = {
       ensure_installed = {
+        "typescript",
+        "tsx",
         "hyprlang",
         "vim",
         "lua",

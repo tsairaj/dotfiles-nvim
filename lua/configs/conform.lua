@@ -1,18 +1,20 @@
 local opts = {
+  log_level = vim.log.levels.DEBUG,
   async = true,
   formatters_by_ft = {
     cs = { "csharpier" },
     css = { "prettier" },
     html = { "prettier" },
-    csproj = { "xmlformat" },
-    xml = { "xmlformat" },
+    -- csproj = { "xmlformat" },
+    xml = { "csharpier" },
+    -- xml = { "xmlformat" },
     caddy = { 'caddy' },
   },
   formatters = {
-    xmlformat = {
-      command = "xmlformat",
-      -- args = { "--overwrite" },
-    },
+    -- xmlformat = {
+    --   command = "xmlformat",
+    --   -- args = { "--overwrite" },
+    -- },
     csharpier = {
       command = "csharpier",
       args = {

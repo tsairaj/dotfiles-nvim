@@ -7,7 +7,7 @@ local M = {}
 
 M.base46 = {
 
-  theme = "material-deep-ocean",
+  theme = "aylin",
 
   hl_override = {
     Type = { bold = true, italic = false },
