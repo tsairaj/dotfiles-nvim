@@ -1,5 +1,5 @@
 -- !!! https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-local servers = { "html", "cssls", "ansiblels", "eslint", "jsonls", "ts_ls", "yamlls", "dockerls", "basedpyright" }
+local servers = { "html", "cssls", "ansiblels", "yamlls", "dockerls", "basedpyright", "tsgo" }
 
 -- lsps with default config
 require("nvchad.configs.lspconfig").defaults()

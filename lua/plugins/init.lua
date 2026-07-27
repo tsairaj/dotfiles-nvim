@@ -50,15 +50,14 @@ return {
       ensure_installed = {
         "lua-language-server",
         -- "xmlformatter",
+        "tsgo",
         "stylua",
         "bicep-lsp",
         "html-lsp",
         "css-lsp",
-        "eslint-lsp",
         "typescript-language-server",
         "csharpier",
         "prettier",
-        "json-lsp",
         "yaml-language-server",
         "markdown-oxide",
 
