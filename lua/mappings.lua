@@ -5,6 +5,7 @@ require "nvchad.mappings"
 -- override nvchad.mappings here
 require("custom-mappings.mappings-fzflua")
 require("custom-mappings.mappings-lsp")
+require("custom-mappings.misc")
 
 map("n", ";", ":",  "CMD enter command mode" )
 map("i", "jk", "<ESC>", "Go normal mode")

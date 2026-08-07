@@ -34,6 +34,10 @@ vim.filetype.add {
 
 vim.lsp.enable("roslyn_ls")
 
+vim.lsp.config("tsgo", {
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
+})
+
 vim.lsp.config("roslyn_ls", {
   filetypes = { "razor", "cs" },
 

@@ -37,6 +37,30 @@ return {
     end,
   },
   {
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- https://github.com/hakonharnes/img-clip.nvim#%EF%B8%8F-configuration
+      default = {
+        dir_path = "assets",
+        relative_to_current_file = true,
+
+        -- Ask for an image name when pasting.
+        prompt_for_file_name = true,
+
+        -- Insert relative paths, not absolute filesystem paths.
+        use_absolute_path = false,
+      },
+    },
+    keys = {
+      {
+        "<leader>ip",
+        "<cmd>PasteImage<cr>",
+        desc = "Paste clipboard image",
+      },
+    }
+  },
+  {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = "VeryLazy", -- Or `LspAttach`
     priority = 1000,    -- needs to be loaded in first
@@ -68,7 +92,6 @@ return {
       },
     },
   },
-
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "main", -- since we are using the latest nvim

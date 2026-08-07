@@ -1,6 +1,9 @@
 local opts = {
   log_level = vim.log.levels.DEBUG,
   async = true,
+  default_format_opts = {
+    timeout_ms = 5000,
+  },
   formatters_by_ft = {
     cs = { "csharpier" },
     css = { "prettier" },
@@ -27,6 +30,14 @@ local opts = {
       command = 'caddy',
       args = { 'fmt', '-' },
       stdin = true,
+    },
+    prettier = {
+      prepend_args = {
+        "--print-width",
+        "160",
+        "--html-whitespace-sensitivity",
+        "ignore",
+      },
     },
   },
   -- format_on_save = {
