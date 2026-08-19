@@ -74,7 +74,7 @@ return {
       ensure_installed = {
         "lua-language-server",
         -- "xmlformatter",
-        "tsgo",
+        "tsc",
         "stylua",
         "bicep-lsp",
         "html-lsp",

@@ -1,5 +1,5 @@
 -- !!! https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-local servers = { "html", "cssls", "ansiblels", "yamlls", "dockerls", "basedpyright", "tsgo" }
+local servers = { "html", "cssls", "ansiblels", "yamlls", "dockerls", "basedpyright", "tsc" }
 
 -- lsps with default config
 require("nvchad.configs.lspconfig").defaults()
@@ -34,7 +34,7 @@ vim.filetype.add {
 
 vim.lsp.enable("roslyn_ls")
 
-vim.lsp.config("tsgo", {
+vim.lsp.config("tsc", {
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
 })
 
