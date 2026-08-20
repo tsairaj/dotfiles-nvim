@@ -40,3 +40,130 @@ ls.add_snippets("lua", {
     t('print("hello World")')
   })
 })
+
+--[[ knowledge management snippets ]]
+
+ls.add_snippets("markdown", {
+  s("troubleshooting", fmt(
+    [[
+---
+type: troubleshooting
+tags:
+  - {}
+---
+
+# {}
+
+## Stack Trace
+
+```
+{}
+```
+
+## Symptoms
+
+## Fix
+
+## Further Read
+    ]], {
+      i(1, "<tag>"),
+      i(3, "<title (error message)>"),
+      i(2, "<stack trace>"),
+    }
+  ))
+})
+
+ls.add_snippets("markdown", {
+  s("recipe", fmt(
+    [[
+---
+type: recipe
+tags:
+  - {}
+---
+
+# {}
+
+## Definition
+{}
+
+## Why it Matters
+{}
+
+## How it works
+{}
+
+## Example
+<minimal working example>
+
+## Further Read
+    ]], {
+      i(1, "<tag>"),
+      i(2, "<title>"),
+      i(3, "<1–3 sentences, jargon-free if possible>"),
+      i(4, "<the problem it solves / motivation>"),
+      i(5, "<mental model, invariants, key mechanism>")
+    }
+  ))
+})
+
+ls.add_snippets("markdown", {
+  s("concept", fmt(
+    [[
+---
+type: concept
+tags:
+  - {}
+---
+
+# {}
+
+## Definition
+{}
+
+## Why it Matters
+{}
+
+## How it works
+{}
+
+## Example
+<minimal working example>
+
+## Anti-patterns
+
+## Further Read
+    ]], {
+      i(1, "<tag>"),
+      i(2, "<title>"),
+      i(3, "<1–3 sentences, jargon-free if possible>"),
+      i(4, "<the problem it solves / motivation>"),
+      i(5, "<mental model, invariants, key mechanism>")
+    }
+  ))
+})
+
+ls.add_snippets("markdown", {
+  s("runbook", fmt(
+    [[
+---
+type: runbook
+tags:
+  - {}
+---
+
+# {}
+
+## Goal
+
+## Steps
+
+## Verification
+
+## Further Read
+    ]], {
+      i(1, "<tag>"),
+      i(2, "<title>"),
+    }
+  ))
+})

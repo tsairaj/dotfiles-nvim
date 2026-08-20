@@ -200,4 +200,17 @@ return {
     }
   },
   { "smithbm2316/centerpad.nvim" },
+  {
+    "brianhuster/live-preview.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    ft = { "markdown" },
+    -- start with ":LivePreview start"
+    config = function()
+      require("livepreview.config").set({
+        -- defaults are generally fine
+      })
+    end,
+  }
 }
