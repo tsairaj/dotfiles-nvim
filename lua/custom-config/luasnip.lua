@@ -84,25 +84,21 @@ tags:
 
 # {}
 
-## Definition
-{}
-
-## Why it Matters
-{}
-
 ## How it works
+
 {}
 
 ## Example
-<minimal working example>
 
-## Further Read
+```
+{}
+```
+
     ]], {
       i(1, "<tag>"),
       i(2, "<title>"),
-      i(3, "<1–3 sentences, jargon-free if possible>"),
-      i(4, "<the problem it solves / motivation>"),
-      i(5, "<mental model, invariants, key mechanism>")
+      i(3, "<mental model, invariants, key mechanism>"),
+      i(4, "<minimal working example>")
     }
   ))
 })

@@ -210,6 +210,7 @@ return {
     config = function()
       require("livepreview.config").set({
         -- defaults are generally fine
+        -- dynamic_root = true
       })
     end,
   }
