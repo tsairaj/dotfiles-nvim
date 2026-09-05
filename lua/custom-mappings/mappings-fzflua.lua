@@ -24,6 +24,7 @@ map("n", "<leader>ff", fzf.files, "FZF Files")
 map("n", "<leader>fz", fzf.grep_curbuf, "FZF grep current buffer")
 map("n", "<leader>fw", fzf.live_grep, "FZF Live grep")
 map("n", "<leader>gt", fzf.git_status, "FZF Git status")
+map("n", "<leader>gb", fzf.git_bcommits, "FZF Git commits [current buffer]")
 
 map("n", "<leader>fo", fzf.oldfiles, "FZF Old files")
 map("n", "<leader>qo", fzf.quickfix, "FZF Quickfix")

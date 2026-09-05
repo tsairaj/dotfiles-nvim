@@ -7,7 +7,7 @@ local M = {}
 
 M.base46 = {
 
-  theme = "aylin",
+  theme = "decay",
 
   hl_override = {
     Type = { bold = true, italic = false },
