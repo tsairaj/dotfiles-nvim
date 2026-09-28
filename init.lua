@@ -11,6 +11,17 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+-- start listening to godot
+local projectfile = vim.fn.getcwd() .. "/project.godot"
+
+if projectfile then
+  local socket = "/tmp/godothost"
+
+  if not vim.uv.fs_stat(socket) then
+    vim.fn.serverstart(socket)
+  end
+end
+
 local lazy_config = require "configs.lazy"
 
 -- load plugins
